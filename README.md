@@ -5,6 +5,20 @@
 </p>
 
 
+## How to use
+
+Drop `CLAUDE.md` into the root of your project:
+
+```bash
+curl -O https://raw.githubusercontent.com/breim/my-chaotic-claude-md/main/CLAUDE.md
+```
+
+Or with `wget`:
+
+```bash
+wget https://raw.githubusercontent.com/breim/my-chaotic-claude-md/main/CLAUDE.md
+```
+
 ## Origin
 
 This `CLAUDE.md` was based on the behavioral guidelines published by Andrej Karpathy's skill set, mirrored at:
@@ -23,13 +37,13 @@ Rules like *"No features beyond what was asked"*, *"No 'flexibility' or 'configu
 
 ## Changes I made
 
-### 1. Clarified `§2 Simplicity First`
+### 1. Clarified `2. Simplicity First`
 - Reworded *"If you write 200 lines and it could be 50, rewrite it"* → **"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."**
   - Reason: the original phrasing let the agent reduce *feature count* under the banner of "simplicity."
 - Added an explicit boundary at the end of the section:
   > *"Simplicity First governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification."*
 
-### 2. Added `§5 Specs Are The Request` (new section)
+### 2. Added `5. Specs Are The Request` (new section)
 This is the main fix. It establishes that any spec / requirements doc / feature list / `.md` describing what to build is a **contract**, not a suggestion. Specifically:
 
 - Every feature, bullet, or numbered item in the spec must be implemented.
@@ -51,9 +65,9 @@ This forces a re-read of the spec before closing the task — which is exactly t
 
 ## What I kept unchanged
 
-- `§1 Think Before Coding` — surfacing assumptions and tradeoffs is still valuable.
-- `§3 Surgical Changes` — stops drive-by refactors, very useful.
-- `§4 Goal-Driven Execution` — verifiable success criteria are still the north star.
+- `1. Think Before Coding` — surfacing assumptions and tradeoffs is still valuable.
+- `3. Surgical Changes` — stops drive-by refactors, very useful.
+- `4. Goal-Driven Execution` — verifiable success criteria are still the north star.
 
 The original philosophy is still intact. The changes are scoped to one failure mode: **specs being treated as suggestions instead of contracts.**
 
