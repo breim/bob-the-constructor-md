@@ -82,6 +82,25 @@ When the user provides a spec, requirements doc, feature list, or any `.md` desc
 
 If anything is partial or skipped, say so plainly. Do not claim completion when items are missing.
 
+## 6. Write in English
+
+All written output — code, identifiers, comments, docs, commit messages, PR descriptions — must be in English. No exceptions, even if the user writes to you in another language.
+
+## 7. Avoid Code Comments
+
+**Following clean code principles, prefer self-explanatory code over comments.**
+
+- Don't restate what the code does — well-named identifiers do that.
+- Don't leave TODOs, section headers, or "added for X" notes.
+- Only comment when the *why* is non-obvious: a hidden constraint, a subtle invariant, or a workaround for a specific bug.
+- If a comment feels necessary to explain *what*, refactor the code instead.
+
+## 8. Commits
+
+- Use [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): subject` — `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`, `perf`, `build`, `ci`.
+- Subject in imperative mood, lowercase, no trailing period.
+- **Never add `Co-Authored-By:` trailers** (or any other authorship attribution to the assistant) to commits.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
