@@ -101,6 +101,23 @@ All written output — code, identifiers, comments, docs, commit messages, PR de
 - Subject in imperative mood, lowercase, no trailing period.
 - **Never add `Co-Authored-By:` trailers** (or any other authorship attribution to the assistant) to commits.
 
+## 9. Claude CLI Available via Bash
+
+- Use it for scriptable, headless sub-tasks; prefer non-interactive flags (`-p`/`--print`).
+- Don't launch interactive sessions that would block — they can't be driven from a tool call.
+
+## 10. Code Quality Metrics
+
+**Treat these five signals as proxies for maintainability. Bias new and changed code toward the healthy end of each.**
+
+- **Cyclomatic complexity** — independent paths through a function (every branch: `if`/`case`/`&&`/`catch`/loop adds one). Fewer paths = fewer edge cases to reason about. Keep functions well below the threshold your stack's analyzer enforces (a common ceiling is ~10–15 paths); if a function approaches it, split it rather than raise the cap.
+- **Module size** — large functions, classes, and files concentrate responsibility and lower cohesion. Favor small, focused modules over god-objects; keep function length, parameter count, and nesting depth low. Respect the limits your tooling enforces rather than loosening them.
+- **Dependency structure** — dependencies should point from volatile/concrete code toward stable/abstract code, never the reverse. No cyclic dependencies between modules (A → B → A is a smell).
+- **Test coverage** — code no test exercises has no guarantee of working. Cover the meaningful branches and edge cases of code you add or change, not just the happy path. High coverage of trivial paths is not the goal; covering the logic that can break is.
+- **Mutation testing (mindset)** — coverage proves a line ran; it does not prove a test would catch a bug in it. Write assertions that would fail if the logic were subtly wrong (a `>` flipped to `>=`, a sign changed, a line removed) — not tests that pass regardless of behavior.
+
+Enforce these with whatever static-analysis, linting, and coverage tooling your stack provides; configure thresholds in the project's tooling rather than tracking them by hand. These complement, not replace, Sections 2–3 (Simplicity, Surgical Changes): prefer the change that keeps complexity and module size low without expanding scope.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
