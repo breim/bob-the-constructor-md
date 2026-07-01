@@ -1,21 +1,45 @@
-# Speclock CLAUDE.md
+# Bob the Constructor CLAUDE.md
 
 <img width="1675" height="939" alt="cover" src="https://github.com/user-attachments/assets/3ed8d7f7-a40f-4014-81f7-5e42398614ba" />
 
+> *"Can we build it? Yes we can!"* — the whole philosophy of this `CLAUDE.md` in one line: when you hand an agent a blueprint, it builds every part of it, not just the parts that feel simple.
 
 ## How to use
 
 Drop `CLAUDE.md` into the root of your project:
 
 ```bash
-curl -O https://raw.githubusercontent.com/breim/speclock-claude-md/main/CLAUDE.md
+curl -O https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/CLAUDE.md
 ```
 
 Or with `wget`:
 
 ```bash
-wget https://raw.githubusercontent.com/breim/speclock-claude-md/main/CLAUDE.md
+wget https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/CLAUDE.md
 ```
+
+An identical copy is kept as `AGENTS.md` for tools that read that convention instead (e.g. OpenAI Codex CLI, Cursor):
+
+```bash
+curl -O https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/AGENTS.md
+```
+
+Both files are kept in sync — if you edit one, mirror the change in the other.
+
+## What's inside
+
+[`CLAUDE.md`](./CLAUDE.md) currently ships 10 rules:
+
+1. **Think Before Coding** (Check The Blueprint First) — surface assumptions and tradeoffs instead of guessing.
+2. **Simplicity First** (No Wasted Materials) — minimum code per feature, nothing speculative.
+3. **Surgical Changes** (No Demolition Without a Permit) — touch only what the task requires.
+4. **Goal-Driven Execution** — turn tasks into verifiable success criteria.
+5. **Specs Are The Request** (The Blueprint Is The Job) — a spec is a contract; every item gets built or explicitly flagged.
+6. **Write in English** — all code, comments, and docs, regardless of the language the user writes in.
+7. **Avoid Code Comments** — self-explanatory code over comments; only explain the non-obvious *why*.
+8. **Commits** — Conventional Commits, no `Co-Authored-By` trailers.
+9. **Claude CLI Available via Bash** — use it for scriptable, non-interactive sub-tasks.
+10. **Code Quality Metrics** — keep complexity, module size, dependency direction, and test coverage on the healthy end.
 
 ## Origin
 
@@ -35,13 +59,13 @@ Rules like *"No features beyond what was asked"*, *"No 'flexibility' or 'configu
 
 ## Changes I made
 
-### 1. Clarified `2. Simplicity First`
+### 1. Clarified `2. Simplicity First` (No Wasted Materials)
 - Reworded *"If you write 200 lines and it could be 50, rewrite it"* → **"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."**
   - Reason: the original phrasing let the agent reduce *feature count* under the banner of "simplicity."
 - Added an explicit boundary at the end of the section:
   > *"Simplicity First governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification."*
 
-### 2. Added `5. Specs Are The Request` (new section)
+### 2. Added `5. Specs Are The Request` (The Blueprint Is The Job — new section)
 This is the main fix. It establishes that any spec / requirements doc / feature list / `.md` describing what to build is a **contract**, not a suggestion. Specifically:
 
 - Every feature, bullet, or numbered item in the spec must be implemented.
@@ -59,12 +83,12 @@ Before declaring a multi-feature task done, the agent must enumerate every item 
 - [Feature 4] → skipped — [reason, surfaced earlier]
 ```
 
-This forces a re-read of the spec before closing the task — which is exactly the step the agent was skipping before.
+This forces a re-read of the spec before closing the task — which is exactly the step the agent was skipping before. Informally: *"Can we build it? Yes, all of it."*
 
 ## What I kept unchanged
 
-- `1. Think Before Coding` — surfacing assumptions and tradeoffs is still valuable.
-- `3. Surgical Changes` — stops drive-by refactors, very useful.
+- `1. Think Before Coding` (Check The Blueprint First) — surfacing assumptions and tradeoffs is still valuable.
+- `3. Surgical Changes` (No Demolition Without a Permit) — stops drive-by refactors, very useful.
 - `4. Goal-Driven Execution` — verifiable success criteria are still the north star.
 
 The original philosophy is still intact. The changes are scoped to one failure mode: **specs being treated as suggestions instead of contracts.**
@@ -77,4 +101,8 @@ After the changes, when I pass a `.md` with N features, the agent:
 3. Reports per-feature status before claiming the task is done.
 
 If features still get cut after this, the agent has to do it explicitly — not silently under the cover of "simplicity."
+
+---
+
+Dedicated to my friend [@weedo-dev](https://github.com/weedo-dev) — this project started a while back with him in mind.
 
