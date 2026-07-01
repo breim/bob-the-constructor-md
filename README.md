@@ -1,8 +1,6 @@
 # Speclock CLAUDE.md
 
-<p align="center">
-  <img width="540" src="https://github.com/user-attachments/assets/5b2a9c0a-69e3-4891-bf39-b4e1f9e753cb" alt="Imagem do projeto" />
-</p>
+<img width="1675" height="939" alt="cover" src="https://github.com/user-attachments/assets/3ed8d7f7-a40f-4014-81f7-5e42398614ba" />
 
 
 ## How to use
