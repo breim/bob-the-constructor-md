@@ -1,8 +1,8 @@
-# Bob the Constructor CLAUDE.md
+# Bob the Constructor .md
 
 <img width="1675" height="939" alt="cover" src="https://github.com/user-attachments/assets/3ed8d7f7-a40f-4014-81f7-5e42398614ba" />
 
-> *"Can we build it? Yes we can!"* — the whole philosophy of this `CLAUDE.md` in one line: when you hand an agent a blueprint, it builds every part of it, not just the parts that feel simple.
+> *"Can we build it? Yes we can!"* — the whole philosophy of this project in one line: no wasted materials, no demolition without a permit, always up to code, and the full blueprint gets built — not just the parts that feel simple.
 
 ## How to use
 
