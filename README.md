@@ -59,6 +59,8 @@ Rules like *"No features beyond what was asked"*, *"No 'flexibility' or 'configu
 
 ## Changes I made
 
+Compared to the [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md), this file has six more sections than the 4 it started with. The first three changes below are the original fix; the rest were added later as practical guardrails.
+
 ### 1. Clarified `2. Simplicity First` (No Wasted Materials)
 - Reworded *"If you write 200 lines and it could be 50, rewrite it"* → **"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."**
   - Reason: the original phrasing let the agent reduce *feature count* under the banner of "simplicity."
@@ -84,6 +86,23 @@ Before declaring a multi-feature task done, the agent must enumerate every item 
 ```
 
 This forces a re-read of the spec before closing the task — which is exactly the step the agent was skipping before. Informally: *"Can we build it? Yes, all of it."*
+
+### 4. Added `6. Write in English` (new section)
+All written output — code, comments, docs, commit messages, PR descriptions — must be in English, regardless of the language the user writes in.
+
+### 5. Added `7. Avoid Code Comments` (new section)
+Codifies a clean-code bias: don't restate what the code does, only comment on the non-obvious *why*.
+
+### 6. Added `8. Commits` (new section)
+Conventional Commits format, imperative mood, no `Co-Authored-By` trailers.
+
+### 7. Added `9. Claude CLI Available via Bash` (new section)
+Use the Claude CLI for scriptable, headless sub-tasks via non-interactive flags — never launch a blocking interactive session from a tool call.
+
+### 8. Added `10. Code Quality Metrics` (new section)
+Five proxies for maintainability: cyclomatic complexity, module size, dependency structure, test coverage, and a mutation-testing mindset.
+
+> Sourced from Martin Fowler's talk [*"How AI will change software engineering"*](https://www.youtube.com/watch?v=CQmI4XKTa0U) — these five signals are adapted from how he frames code health there.
 
 ## What I kept unchanged
 
