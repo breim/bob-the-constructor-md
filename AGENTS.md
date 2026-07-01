@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
@@ -101,12 +101,7 @@ All written output — code, identifiers, comments, docs, commit messages, PR de
 - Subject in imperative mood, lowercase, no trailing period.
 - **Never add `Co-Authored-By:` trailers** (or any other authorship attribution to the assistant) to commits.
 
-## 9. Claude CLI Available via Bash
-
-- Use it for scriptable, headless sub-tasks; prefer non-interactive flags (`-p`/`--print`).
-- Don't launch interactive sessions that would block — they can't be driven from a tool call.
-
-## 10. Code Quality Metrics
+## 9. Code Quality Metrics
 
 **Treat these five signals as proxies for maintainability. Bias new and changed code toward the healthy end of each.**
 

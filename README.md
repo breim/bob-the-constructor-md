@@ -18,13 +18,13 @@ Or with `wget`:
 wget https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/CLAUDE.md
 ```
 
-An identical copy is kept as `AGENTS.md` for tools that read that convention instead (e.g. OpenAI Codex CLI, Cursor):
+A mirrored copy is kept as `AGENTS.md` for tools that read that convention instead (e.g. OpenAI Codex CLI, Cursor):
 
 ```bash
 curl -O https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/AGENTS.md
 ```
 
-Both files are kept in sync — if you edit one, mirror the change in the other.
+Both files are kept in sync except for rule 9 (`Claude CLI Available via Bash`), which only applies to Claude Code and is dropped from `AGENTS.md`.
 
 ## What's inside
 
@@ -38,7 +38,7 @@ Both files are kept in sync — if you edit one, mirror the change in the other.
 6. **Write in English** — all code, comments, and docs, regardless of the language the user writes in.
 7. **Avoid Code Comments** — self-explanatory code over comments; only explain the non-obvious *why*.
 8. **Commits** — Conventional Commits, no `Co-Authored-By` trailers.
-9. **Claude CLI Available via Bash** — use it for scriptable, non-interactive sub-tasks.
+9. **Claude CLI Available via Bash** — use it for scriptable, non-interactive sub-tasks. *(`CLAUDE.md` only — dropped from `AGENTS.md`, since it's Claude-specific.)*
 10. **Code Quality Metrics** — keep complexity, module size, dependency direction, and test coverage on the healthy end.
 
 ## Origin
