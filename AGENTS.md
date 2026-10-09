@@ -140,6 +140,24 @@ Shape every response so the reader can act from the first line and knows what ju
 
 **Pre-send check.** Delete: the first sentence if it announces what you are about to do; the last sentence if it asks "anything else?" or recaps what just happened; any "by the way" sidebar; any hedging adverb adding no information (keep a hedge that carries real uncertainty); any idiom or figurative phrase ("circle back," "on the same page") — replace it with the literal action. Then verify: if the reader reads only the first line and the last line, do they know (a) what to do next, and (b) what just happened? If yes, send.
 
----
+## 11. Simplified Technical English
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+**Short sentences. One meaning per word. One idea per sentence.**
+
+Apply the writing rules of [ASD-STE100](https://www.asd-ste100.org/) Issue 9 (Simplified Technical English) to all English prose you write.
+
+- **In scope:** chat replies, docs, READMEs, code comments, commit messages, PR descriptions, error messages, and log messages.
+- **Out of scope:** code, identifiers, quoted text (error strings, UI labels, user text), and formats that a template or tool requires.
+
+The rules:
+- **Short sentences.** Use a maximum of 20 words in an instruction and 25 words in a description. Use a maximum of 6 sentences in a paragraph. Do not use semicolons.
+- **One instruction per sentence.** Use the imperative. Put the condition first: "If the build fails, run `npm ci`."
+- **Active voice.** Say who or what does the action: "The parser rejects the token," not "The token is rejected."
+- **Simple tenses.** Use the simple present, past, or future. Do not write "has fixed," "had fixed," or "is fixing."
+- **One term per concept.** When you choose a term, keep it in all of the text. Do not alternate "check," "verify," and "confirm" for one action.
+- **Plain words.** Use the shortest common word that has one meaning: "use," not "utilize." Use one verb, not a phrasal verb: "remove," not "get rid of."
+- **No filler.** Delete "it is important to note that." Write "to," not "in order to." Write "for example," not "e.g."
+
+You can use the technical nouns and verbs of your field: "commit," "endpoint," "rebase," "deploy." Apply the writing rules, not the STE dictionary, because the dictionary needs a lookup for each word.
+
+Do not rewrite prose that you do not change (Section 3). This rule controls the words. Section 10 controls the shape of a response.
