@@ -4,69 +4,63 @@
 
 > *"Can we build it? Yes we can!"*
 
-That line is the whole philosophy. No wasted materials, no demolition without a permit, always up to code, and the full blueprint gets built, including the parts that look optional.
+That line is the whole philosophy. The agent does not waste materials, does not demolish without a permit, and always builds to code. It builds all of the blueprint, and that includes the parts that look optional.
 
 ## How to use
 
-Drop `CLAUDE.md` into the root of your project:
-
-```bash
-curl -O https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/CLAUDE.md
-```
-
-Or with `wget`:
-
-```bash
-wget https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/CLAUDE.md
-```
-
-`AGENTS.md` is the same file under the name other tools look for, like OpenAI Codex CLI and Cursor:
+Put `AGENTS.md` in the root directory of your project:
 
 ```bash
 curl -O https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/AGENTS.md
 ```
 
-The two files stay in sync except for rule 9, `Claude CLI Available via Bash`, which `AGENTS.md` drops because it only applies to Claude Code.
+Or use `wget`:
+
+```bash
+wget https://raw.githubusercontent.com/breim/bob-the-constructor-md/main/AGENTS.md
+```
+
+Claude Code, OpenAI Codex CLI, Cursor, and other coding agents read `AGENTS.md`. Claude Code 2.1.277 and later reads it only when the project has no `CLAUDE.md`.
 
 ## What's inside
 
-[`CLAUDE.md`](./CLAUDE.md) currently ships 11 rules:
+[`AGENTS.md`](./AGENTS.md) has 11 rules:
 
-1. **Think Before Coding** (Check The Blueprint First). Surface assumptions and tradeoffs instead of guessing.
-2. **Simplicity First** (No Wasted Materials). Minimum code per feature, nothing speculative.
-3. **Surgical Changes** (No Demolition Without a Permit). Touch only what the task requires.
-4. **Goal-Driven Execution**. Turn tasks into verifiable success criteria.
-5. **Specs Are The Request** (The Blueprint Is The Job). A spec is a contract. Every item gets built or explicitly flagged.
-6. **Write in English**. All code, comments, and docs, whatever language the user writes in.
-7. **Avoid Code Comments**. Self-explanatory code over comments. Explain only the non-obvious *why*.
-8. **Commits**. Conventional Commits, no `Co-Authored-By` trailers.
-9. **Claude CLI Available via Bash**. Use it for scriptable, non-interactive sub-tasks. This one lives in `CLAUDE.md` only.
-10. **Code Quality Metrics**. Keep complexity, module size, dependency direction, and test coverage on the healthy end.
-11. **Response Format**. Action first, numbered steps, one concrete next step, no preamble or closers.
+1. **Think Before Coding** (Check The Blueprint First). State assumptions and tradeoffs. Do not guess.
+2. **Simplicity First** (No Wasted Materials). Write the minimum code for each feature. Write nothing speculative.
+3. **Surgical Changes** (No Demolition Without a Permit). Change only what the task requires.
+4. **Goal-Driven Execution**. Write verifiable success criteria for each task.
+5. **Specs Are The Request** (The Blueprint Is The Job). A spec is a contract. Build every item, or ask before you skip it.
+6. **Write in English**. Write all code, comments, and docs in English. The language of the user does not change this.
+7. **Avoid Code Comments**. Write self-explanatory code, not comments. Explain only the non-obvious *why*.
+8. **Commits**. Use Conventional Commits. Do not add `Co-Authored-By` trailers.
+9. **Code Quality Metrics**. Keep complexity, module size, dependency direction, and test coverage healthy.
+10. **Response Format**. Put the action first. Number the steps. End with one concrete next step. Do not write a preamble or a closer.
+11. **Simplified Technical English**. Write all prose with the ASD-STE100 writing rules: short sentences, active voice, one term per concept.
 
 ## Origin
 
-I based this `CLAUDE.md` on the behavioral guidelines from Andrej Karpathy's skill set, mirrored at:
+I based `AGENTS.md` on the behavioral guidelines in Andrej Karpathy's skill set. A mirror is at:
 
 > https://github.com/forrestchang/andrej-karpathy-skills
 
-The original is genuinely good at keeping a coding agent disciplined. Think before coding, keep edits surgical, skip speculative work, verify against explicit success criteria.
+The original keeps a coding agent disciplined. It tells the agent to think first, keep edits surgical, skip speculative work, and verify against explicit success criteria.
 
 ## Why I changed it
 
-The original guidelines bias hard toward doing less. That works for a small task: one bug, one function, one refactor. It fell apart the first time I handed an agent a real spec.
+The original guidelines strongly prefer less work. That is correct for a small task: one bug, one function, or one refactor. The guidelines failed the first time I gave an agent a real spec.
 
-> When I passed a `.md` file containing a multi-feature spec, the agent would silently drop features, treating them as "speculative" or "beyond what was asked." The spec *was* the ask.
+> When I gave the agent a `.md` file with a multi-feature spec, it silently dropped features. It called them "speculative" or "beyond what was asked." The spec *was* the request.
 
-The agent applied rules like *"No features beyond what was asked"*, *"No 'flexibility' or 'configurability' that wasn't requested"*, and *"Every changed line should trace directly to the user's request"* to individual bullets inside the spec instead of to the spec as a whole. "Simplicity First" became its excuse for cutting scope.
+The agent applied rules, for example *"No features beyond what was asked"*, *"No 'flexibility' or 'configurability' that wasn't requested"*, and *"Every changed line should trace directly to the user's request"*, to the individual bullets in the spec. It did not apply them to the full spec. It used "Simplicity First" as an excuse to cut scope.
 
 ## Changes I made
 
-The [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md) has 4 sections. This file has 11. The first three changes below are the scope fix. The rest arrived later, each one after something went wrong.
+The [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md) has 4 sections. This file has 11. The first three changes below fix the scope problem. I added the other changes later. Each one came after a failure.
 
 ### 1. Clarified `2. Simplicity First` (No Wasted Materials)
 
-The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut *feature count* under the banner of simplicity. It now reads:
+The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut the *feature count* and call it simplicity. The rule now says:
 
 > *"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."*
 
@@ -76,16 +70,16 @@ The section also ends with an explicit boundary:
 
 ### 2. Added `5. Specs Are The Request` (The Blueprint Is The Job)
 
-This is the main fix. A spec, requirements doc, feature list, or any `.md` describing what to build is a contract, not a suggestion.
+This is the main fix. A spec, a requirements doc, a feature list, or any `.md` that describes what to build is a contract, not a suggestion.
 
-- Every feature, bullet, or numbered item in the spec must be implemented.
-- Silent drops, deferrals, merges, and "phasing" are not allowed. If something seems unnecessary, the agent surfaces it and asks before skipping.
-- "Simplicity First" applies to the implementation of each item, never to which items get implemented.
+- The agent implements every feature, bullet, or numbered item in the spec.
+- The agent does not silently drop, defer, merge, or "phase" items. If an item seems unnecessary, the agent says so and asks before it skips the item.
+- "Simplicity First" applies to how the agent implements each item, never to which items it implements.
 - Ambiguity on an item triggers a question, not an omission.
 
 ### 3. Added a completion checklist requirement
 
-Before declaring a multi-feature task done, the agent enumerates every item from the spec and its status:
+Before the agent declares a multi-feature task done, it lists each item from the spec with its status:
 
 ```
 - [Feature 1] → done
@@ -94,54 +88,58 @@ Before declaring a multi-feature task done, the agent enumerates every item from
 - [Feature 4] → skipped — [reason, surfaced earlier]
 ```
 
-This forces a re-read of the spec before the task closes. That re-read is exactly the step the agent kept skipping. Informally: *"Can we build it? Yes, all of it."*
+This forces the agent to read the spec again before the task closes. Before this change, the agent always skipped that step. The short form of this rule is *"Can we build it? Yes, all of it."*
 
 ### 4. Added `6. Write in English`
 
-All written output goes out in English. Code, comments, docs, commit messages, PR descriptions, whatever language the user writes in.
+The agent writes all output in English: code, comments, docs, commit messages, and PR descriptions. The language of the user does not change this.
 
 ### 5. Added `7. Avoid Code Comments`
 
-Don't restate what the code does. Comment only when the *why* is non-obvious.
+The agent does not restate what the code does. It writes a comment only when the *why* is not obvious.
 
 ### 6. Added `8. Commits`
 
-Conventional Commits format, imperative mood, no `Co-Authored-By` trailers.
+Commits use the Conventional Commits format and the imperative mood. They do not have `Co-Authored-By` trailers.
 
-### 7. Added `9. Claude CLI Available via Bash`
+### 7. Added `9. Code Quality Metrics`
 
-Use the Claude CLI for scriptable, headless sub-tasks through non-interactive flags. Never launch a blocking interactive session from a tool call.
+The rule names five signals of maintainability: cyclomatic complexity, module size, dependency structure, test coverage, and a mutation-testing mindset.
 
-### 8. Added `10. Code Quality Metrics`
+> Source: the talk [*"How AI will change software engineering"*](https://www.youtube.com/watch?v=CQmI4XKTa0U) by Martin Fowler. The five signals come from how Fowler describes code health in that talk.
 
-Five signals of maintainability: cyclomatic complexity, module size, dependency structure, test coverage, and a mutation-testing mindset.
+### 8. Added `10. Response Format`
 
-> Sourced from Martin Fowler's talk [*"How AI will change software engineering"*](https://www.youtube.com/watch?v=CQmI4XKTa0U). The five signals are adapted from how he frames code health there.
+The rule shapes every response so the reader can act on it. The agent leads with the next action and numbers multi-step work. It ends with one concrete next step and restates progress each turn. It shows a maximum of five items in a list and skips preambles and closers. The section also lists when these rules do not apply: explanations, destructive actions, repeated failed fixes, real ambiguity, and the tool's own system prompt.
 
-### 9. Added `11. Response Format`
+> Source: [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT), with changes. The original is a session skill with an on/off toggle. Here the rule is always on. This version removes the ADHD framing and the toggle, so the rule is a plain output contract.
 
-Shapes every response so the reader can act on it. Lead with the next action, number multi-step work, end with one concrete next step, restate progress each turn, cap visible lists at five, skip preambles and closers. The section also lists when those rules yield: explanations, destructive actions, debug spirals, real ambiguity, and anything the tool's own system prompt requires.
+### 9. Added `11. Simplified Technical English`
 
-> Adapted from [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT). The original is a session skill you switch on and off. Here it is always on, and the ADHD framing and the toggle are gone, so the rule reads as a plain output contract.
+The rule applies the ASD-STE100 writing rules to all English prose that the agent writes: chat replies, docs, comments, commit messages, and PR descriptions. Sentences stay short (20 words for an instruction, 25 for a description). The voice is active, the tenses are simple, and each concept keeps one term. Code, identifiers, and quoted text are out of scope.
+
+The aerospace industry made STE for maintenance manuals, not for software. This project uses its sentence rules because the problem is the same: ambiguous prose, non-native readers, and machine translation. The STE dictionary is out of scope, because it needs a lookup for each word.
+
+> Source: [ASD-STE100 Issue 9](https://www.asd-ste100.org/) (January 2025). The standard is free to download. The rule paraphrases the writing rules and does not reproduce the dictionary. ASD-STE100 is a registered trademark of ASD, and ASD does not endorse this project.
 
 ## What I kept unchanged
 
-- `1. Think Before Coding` (Check The Blueprint First). Surfacing assumptions and tradeoffs is still valuable.
-- `3. Surgical Changes` (No Demolition Without a Permit). Stops drive-by refactors, which I care about a lot.
-- `4. Goal-Driven Execution`. Verifiable success criteria are what make everything else checkable.
+- `1. Think Before Coding` (Check The Blueprint First). Stated assumptions and tradeoffs are still valuable.
+- `3. Surgical Changes` (No Demolition Without a Permit). This rule stops refactors that nobody requested. That is very important to me.
+- `4. Goal-Driven Execution`. Verifiable success criteria make all of the other rules checkable.
 
-The original philosophy is intact. I changed one thing: the agent no longer gets to treat a spec as a suggestion.
+The original philosophy is intact. I changed one thing: the agent can no longer treat a spec as a suggestion.
 
 ## Result
 
-After the changes, when I pass a `.md` with N features, the agent:
+After the changes, the agent does three things with a `.md` that has N features:
 
-1. Treats the entire list as the request.
-2. Asks before skipping anything.
-3. Reports per-feature status before claiming the task is done.
+1. It treats the full list as the request.
+2. It asks before it skips an item.
+3. It reports the status of each feature before it declares the task done.
 
-Features can still get cut. But now the agent has to say so out loud, instead of quietly filing it under "simplicity."
+The agent can still cut a feature. But now it must say so, and it cannot hide the cut under "simplicity."
 
 ---
 
-Dedicated to my friend [@weedo-dev](https://github.com/weedo-dev). This project started a while back with him in mind.
+I dedicate this project to my friend [@weedo-dev](https://github.com/weedo-dev). I started it some time ago for him.
