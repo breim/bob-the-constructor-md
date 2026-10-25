@@ -60,11 +60,7 @@ The [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CL
 
 ### 1. Clarified `2. Simplicity First` (No Wasted Materials)
 
-The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut the *feature count* and call it simplicity. The rule now says:
-
-> *"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."*
-
-The section also ends with an explicit boundary:
+The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut the *feature count* and call it simplicity. I removed that line and the *"Would a senior engineer say this is overcomplicated?"* test. The section now ends with an explicit boundary:
 
 > *"Simplicity First governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification."*
 

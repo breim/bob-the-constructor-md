@@ -22,9 +22,7 @@ Before implementing:
 - No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
-- Minimize code *per feature*, not feature count. If a single feature takes 200 lines and could be 50, rewrite it.
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
 **Scope vs. simplicity:** "Simplicity First" governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification.
 
