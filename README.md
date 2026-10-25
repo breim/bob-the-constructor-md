@@ -24,7 +24,7 @@ Claude Code, OpenAI Codex CLI, Cursor, and other coding agents read `AGENTS.md`.
 
 ## What's inside
 
-[`AGENTS.md`](./AGENTS.md) has 11 rules:
+[`AGENTS.md`](./AGENTS.md) has 10 rules:
 
 1. **Think Before Coding** (Check The Blueprint First). State assumptions and tradeoffs. Do not guess.
 2. **Simplicity First** (No Wasted Materials). Write the minimum code for each feature. Write nothing speculative.
@@ -35,8 +35,7 @@ Claude Code, OpenAI Codex CLI, Cursor, and other coding agents read `AGENTS.md`.
 7. **Avoid Code Comments**. Write self-explanatory code, not comments. Explain only the non-obvious *why*.
 8. **Commits**. Use Conventional Commits. Do not add `Co-Authored-By` trailers.
 9. **Code Quality Metrics**. Keep complexity, module size, dependency direction, and test coverage healthy.
-10. **Response Format**. Put the action first. Number the steps. End with one concrete next step. Do not write a preamble or a closer.
-11. **Simplified Technical English**. Write all prose with the ASD-STE100 writing rules: short sentences, active voice, one term per concept.
+10. **Simplified Technical English**. Write all prose with the ASD-STE100 writing rules: short sentences, active voice, one term per concept.
 
 ## Origin
 
@@ -56,15 +55,11 @@ The agent applied rules, for example *"No features beyond what was asked"*, *"No
 
 ## Changes I made
 
-The [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md) has 4 sections. This file has 11. The first three changes below fix the scope problem. I added the other changes later. Each one came after a failure.
+The [original](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md) has 4 sections. This file has 10. The first three changes below fix the scope problem. I added the other changes later. Each one came after a failure.
 
 ### 1. Clarified `2. Simplicity First` (No Wasted Materials)
 
-The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut the *feature count* and call it simplicity. The rule now says:
-
-> *"Minimize code per feature, not feature count. If a single feature takes 200 lines and could be 50, rewrite it."*
-
-The section also ends with an explicit boundary:
+The original said *"If you write 200 lines and it could be 50, rewrite it."* That phrasing let the agent cut the *feature count* and call it simplicity. I removed that line and the *"Would a senior engineer say this is overcomplicated?"* test. The section now ends with an explicit boundary:
 
 > *"Simplicity First governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification."*
 
@@ -108,15 +103,9 @@ The rule names five signals of maintainability: cyclomatic complexity, module si
 
 > Source: the talk [*"How AI will change software engineering"*](https://www.youtube.com/watch?v=CQmI4XKTa0U) by Martin Fowler. The five signals come from how Fowler describes code health in that talk.
 
-### 8. Added `10. Response Format`
+### 8. Added `10. Simplified Technical English`
 
-The rule shapes every response so the reader can act on it. The agent leads with the next action and numbers multi-step work. It ends with one concrete next step and restates progress each turn. It shows a maximum of five items in a list and skips preambles and closers. The section also lists when these rules do not apply: explanations, destructive actions, repeated failed fixes, real ambiguity, and the tool's own system prompt.
-
-> Source: [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT), with changes. The original is a session skill with an on/off toggle. Here the rule is always on. This version removes the ADHD framing and the toggle, so the rule is a plain output contract.
-
-### 9. Added `11. Simplified Technical English`
-
-The rule applies the ASD-STE100 writing rules to all English prose that the agent writes: chat replies, docs, comments, commit messages, and PR descriptions. Sentences stay short (20 words for an instruction, 25 for a description). The voice is active, the tenses are simple, and each concept keeps one term. Code, identifiers, and quoted text are out of scope.
+The rule applies the ASD-STE100 writing rules to all English prose that the agent writes: chat replies, docs, comments, commit messages, and PR descriptions. Sentences stay short (20 words for an instruction, 25 for a description). The voice is active, the tenses are simple, and each concept keeps one term. Sentences keep their articles, and noun clusters have a maximum of 3 nouns. Code, identifiers, and quoted text are out of scope.
 
 The aerospace industry made STE for maintenance manuals, not for software. This project uses its sentence rules because the problem is the same: ambiguous prose, non-native readers, and machine translation. The STE dictionary is out of scope, because it needs a lookup for each word.
 

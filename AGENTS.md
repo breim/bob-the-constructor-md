@@ -22,9 +22,7 @@ Before implementing:
 - No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
-- Minimize code *per feature*, not feature count. If a single feature takes 200 lines and could be 50, rewrite it.
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
 **Scope vs. simplicity:** "Simplicity First" governs HOW you implement each requested item, never WHETHER to implement it. Cutting scope is not simplification.
 
@@ -103,61 +101,28 @@ All written output — code, identifiers, comments, docs, commit messages, PR de
 
 ## 9. Code Quality Metrics
 
-**Treat these five signals as proxies for maintainability. Bias new and changed code toward the healthy end of each.**
+**Keep new and changed code at the healthy end of these five signals.**
 
-- **Cyclomatic complexity** — independent paths through a function (every branch: `if`/`case`/`&&`/`catch`/loop adds one). Fewer paths = fewer edge cases to reason about. Keep functions well below the threshold your stack's analyzer enforces (a common ceiling is ~10–15 paths); if a function approaches it, split it rather than raise the cap.
-- **Module size** — large functions, classes, and files concentrate responsibility and lower cohesion. Favor small, focused modules over god-objects; keep function length, parameter count, and nesting depth low. Respect the limits your tooling enforces rather than loosening them.
-- **Dependency structure** — dependencies should point from volatile/concrete code toward stable/abstract code, never the reverse. No cyclic dependencies between modules (A → B → A is a smell).
-- **Test coverage** — code no test exercises has no guarantee of working. Cover the meaningful branches and edge cases of code you add or change, not just the happy path. High coverage of trivial paths is not the goal; covering the logic that can break is.
-- **Mutation testing (mindset)** — coverage proves a line ran; it does not prove a test would catch a bug in it. Write assertions that would fail if the logic were subtly wrong (a `>` flipped to `>=`, a sign changed, a line removed) — not tests that pass regardless of behavior.
+- **Cyclomatic complexity.** Keep each function well below the limit of your analyzer (often 10–15 paths). If a function gets near the limit, split the function.
+- **Module size.** Keep functions, classes, and files small and focused, with few parameters and shallow nesting.
+- **Dependency structure.** Point dependencies from volatile, concrete code to stable, abstract code. Do not make cycles between modules (A → B → A).
+- **Test coverage.** Test the branches and edge cases of the code that you add or change, not only the happy path. Do not test trivial code only to raise the coverage number.
+- **Mutation testing (mindset).** Write assertions that fail on a small logic change: `>` to `>=`, a flipped sign, or a removed line.
 
-Enforce these with whatever static-analysis, linting, and coverage tooling your stack provides; configure thresholds in the project's tooling rather than tracking them by hand. These complement, not replace, Sections 2–3 (Simplicity, Surgical Changes): prefer the change that keeps complexity and module size low without expanding scope.
+Set the thresholds in the configuration of your linter, analyzer, and coverage tools. Do not loosen a threshold to make code pass. If two changes solve the task, choose the change with lower complexity. Do not refactor code outside the task to improve these metrics (Sections 2–3).
 
-## 10. Response Format
-
-**Action first. Steps numbered. One next step. No preamble, no recap, no closer.**
-
-Shape every response so the reader can act from the first line and knows what just happened from the last line. Working memory is small: anything not on screen is forgotten, so never ask the reader to "keep in mind X."
-
-- **Lead with the next action.** The first line is something the reader can do. If the answer is a command, path, or snippet, it goes first. Prose comes after, if at all.
-- **Number multi-step tasks.** One bounded action per step; no step contains "and then" twice. Use the fewest steps that still work and fold trivial steps into the one before.
-- **End with one concrete next action.** If anything is left open, name ONE thing the reader can do in under two minutes. Even "open the file" counts.
-- **Suppress tangents.** Finish the first issue, then offer the second as a separate question: *"Separately: there is also a stale dependency. Handle that next?"* A question that comes up mid-work is not a tangent — answer it yourself if you can; if it still needs the reader, surface it once, at the end.
-- **Restate state every turn.** The reader cannot hold "step 3 of 5" between messages: *"Step 3 of 5 done: schema updated. Next: backfill the new column."* If the harness has a task or plan tool, use it — one item per step, one in progress at a time. The checklist does the restating; don't also narrate the plan as prose.
-- **Give specific time estimates.** *"About 15 minutes if tests already cover this. An afternoon if not."* Never "some work" or "a bit."
-- **Make completed work visible.** Show what now works, in concrete terms: *"Login now works with magic links. Try: `npm run dev`, open `/login`."* Don't bury wins in a recap.
-- **Matter-of-fact errors.** State cause and fix: *"Test fails at `auth.spec.ts:42`: expected 200, got 401. Cause: missing auth header. Fix: add `Authorization: Bearer ${token}`."* Never "Uh oh" or "There seems to be a problem."
-- **Cap lists to 5 items per group.** Group related items, rank the most relevant first. This shapes presentation only — it never limits analysis, search, or tool results, and never omits relevant items when completeness matters. The spec status checklist in Section 5 is always complete.
-- **No preamble, no recap, no closing pleasantries.** Forbidden openers: "Great question," "Let me...", "Sure!", "Looking at your...". Forbidden recaps: "I've now done X, Y, and Z, which means...". Forbidden closers: "Hope this helps," "Let me know if you need anything else." Start with the answer. End when the answer is done.
-
-**Break these rules when:**
-- The user asks to "explain" or "walk me through" — explain fully, with headers so the reader can skim back. Still no preamble, still no closer.
-- A destructive action is ahead (`rm -rf`, force push, schema migration, dropping a table) — confirm before acting. Safety wins over brevity.
-- The last three turns were "still broken" — stop iterating on code. Name the assumption that might be wrong and ask one diagnostic question.
-- The request is genuinely ambiguous — one short clarifying question beats guessing and rewriting (see Section 1).
-- A rule fights the task — the task wins, the shape stays. *"What are my options"* gets 2–4 ranked options with one-line trade-offs, recommendation first, not one path.
-- A rule fights the harness — the harness's system prompt wins, the shape stays. Announce a tool call when the harness requires it, do the work instead of asking "want me to," point time estimates at whoever executes the steps.
-
-**Pre-send check.** Delete: the first sentence if it announces what you are about to do; the last sentence if it asks "anything else?" or recaps what just happened; any "by the way" sidebar; any hedging adverb adding no information (keep a hedge that carries real uncertainty); any idiom or figurative phrase ("circle back," "on the same page") — replace it with the literal action. Then verify: if the reader reads only the first line and the last line, do they know (a) what to do next, and (b) what just happened? If yes, send.
-
-## 11. Simplified Technical English
+## 10. Simplified Technical English
 
 **Short sentences. One meaning per word. One idea per sentence.**
 
-Apply the writing rules of [ASD-STE100](https://www.asd-ste100.org/) Issue 9 (Simplified Technical English) to all English prose you write.
+Apply the writing rules of [ASD-STE100](https://www.asd-ste100.org/) Issue 9 to all English prose, for example comments, commits, and log messages. Code, identifiers, quoted text, and formats that a tool requires are out of scope.
 
-- **In scope:** chat replies, docs, READMEs, code comments, commit messages, PR descriptions, error messages, and log messages.
-- **Out of scope:** code, identifiers, quoted text (error strings, UI labels, user text), and formats that a template or tool requires.
+- **Short sentences.** Use a maximum of 20 words in an instruction, 25 words in a description, and 6 sentences in a paragraph. Do not use semicolons.
+- **Complete sentences.** Keep "a," "the," and "that." Write "Make sure that the test passes," not "Make sure test passes."
+- **One instruction per sentence.** Put the condition first: "If the build fails, run `npm ci`."
+- **Active voice, simple tenses.** Write "The parser rejects the token," not "The token is rejected." Do not write "has fixed," "is fixing," or "before deploying."
+- **One term per concept.** Do not alternate "check," "verify," and "confirm" for one action.
+- **Plain words.** Write "use," not "utilize," and "remove," not "get rid of." Delete filler such as "it is important to note that."
+- **Short noun clusters.** Use a maximum of 3 nouns in a row: "the timeout for the API request," not "the API request timeout value."
 
-The rules:
-- **Short sentences.** Use a maximum of 20 words in an instruction and 25 words in a description. Use a maximum of 6 sentences in a paragraph. Do not use semicolons.
-- **One instruction per sentence.** Use the imperative. Put the condition first: "If the build fails, run `npm ci`."
-- **Active voice.** Say who or what does the action: "The parser rejects the token," not "The token is rejected."
-- **Simple tenses.** Use the simple present, past, or future. Do not write "has fixed," "had fixed," or "is fixing."
-- **One term per concept.** When you choose a term, keep it in all of the text. Do not alternate "check," "verify," and "confirm" for one action.
-- **Plain words.** Use the shortest common word that has one meaning: "use," not "utilize." Use one verb, not a phrasal verb: "remove," not "get rid of."
-- **No filler.** Delete "it is important to note that." Write "to," not "in order to." Write "for example," not "e.g."
-
-You can use the technical nouns and verbs of your field: "commit," "endpoint," "rebase," "deploy." Apply the writing rules, not the STE dictionary, because the dictionary needs a lookup for each word.
-
-Do not rewrite prose that you do not change (Section 3). This rule controls the words. Section 10 controls the shape of a response.
+Apply the writing rules, not the STE dictionary. You can use the technical words of your field. Do not rewrite prose that you do not change (Section 3).
