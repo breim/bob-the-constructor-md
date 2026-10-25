@@ -115,20 +115,14 @@ Set the thresholds in the configuration of your linter, analyzer, and coverage t
 
 **Short sentences. One meaning per word. One idea per sentence.**
 
-Apply the writing rules of [ASD-STE100](https://www.asd-ste100.org/) Issue 9 (Simplified Technical English) to all English prose you write.
+Apply the writing rules of [ASD-STE100](https://www.asd-ste100.org/) Issue 9 to all English prose, for example comments, commits, and log messages. Code, identifiers, quoted text, and formats that a tool requires are out of scope.
 
-- **In scope:** chat replies, docs, READMEs, code comments, commit messages, PR descriptions, error messages, and log messages.
-- **Out of scope:** code, identifiers, quoted text (error strings, UI labels, user text), and formats that a template or tool requires.
+- **Short sentences.** Use a maximum of 20 words in an instruction, 25 words in a description, and 6 sentences in a paragraph. Do not use semicolons.
+- **Complete sentences.** Keep "a," "the," and "that." Write "Make sure that the test passes," not "Make sure test passes."
+- **One instruction per sentence.** Put the condition first: "If the build fails, run `npm ci`."
+- **Active voice, simple tenses.** Write "The parser rejects the token," not "The token is rejected." Do not write "has fixed," "is fixing," or "before deploying."
+- **One term per concept.** Do not alternate "check," "verify," and "confirm" for one action.
+- **Plain words.** Write "use," not "utilize," and "remove," not "get rid of." Delete filler such as "it is important to note that."
+- **Short noun clusters.** Use a maximum of 3 nouns in a row: "the timeout for the API request," not "the API request timeout value."
 
-The rules:
-- **Short sentences.** Use a maximum of 20 words in an instruction and 25 words in a description. Use a maximum of 6 sentences in a paragraph. Do not use semicolons.
-- **One instruction per sentence.** Use the imperative. Put the condition first: "If the build fails, run `npm ci`."
-- **Active voice.** Say who or what does the action: "The parser rejects the token," not "The token is rejected."
-- **Simple tenses.** Use the simple present, past, or future. Do not write "has fixed," "had fixed," or "is fixing."
-- **One term per concept.** When you choose a term, keep it in all of the text. Do not alternate "check," "verify," and "confirm" for one action.
-- **Plain words.** Use the shortest common word that has one meaning: "use," not "utilize." Use one verb, not a phrasal verb: "remove," not "get rid of."
-- **No filler.** Delete "it is important to note that." Write "to," not "in order to." Write "for example," not "e.g."
-
-You can use the technical nouns and verbs of your field: "commit," "endpoint," "rebase," "deploy." Apply the writing rules, not the STE dictionary, because the dictionary needs a lookup for each word.
-
-Do not rewrite prose that you do not change (Section 3). This rule controls the words.
+Apply the writing rules, not the STE dictionary. You can use the technical words of your field. Do not rewrite prose that you do not change (Section 3).

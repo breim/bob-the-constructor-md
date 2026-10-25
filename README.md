@@ -105,7 +105,7 @@ The rule names five signals of maintainability: cyclomatic complexity, module si
 
 ### 8. Added `10. Simplified Technical English`
 
-The rule applies the ASD-STE100 writing rules to all English prose that the agent writes: chat replies, docs, comments, commit messages, and PR descriptions. Sentences stay short (20 words for an instruction, 25 for a description). The voice is active, the tenses are simple, and each concept keeps one term. Code, identifiers, and quoted text are out of scope.
+The rule applies the ASD-STE100 writing rules to all English prose that the agent writes: chat replies, docs, comments, commit messages, and PR descriptions. Sentences stay short (20 words for an instruction, 25 for a description). The voice is active, the tenses are simple, and each concept keeps one term. Sentences keep their articles, and noun clusters have a maximum of 3 nouns. Code, identifiers, and quoted text are out of scope.
 
 The aerospace industry made STE for maintenance manuals, not for software. This project uses its sentence rules because the problem is the same: ambiguous prose, non-native readers, and machine translation. The STE dictionary is out of scope, because it needs a lookup for each word.
 
